@@ -16,7 +16,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     liquibaseRuntime 'info.picocli:picocli:4.7.5'
     liquibaseRuntime 'org.liquibase:liquibase-core:4.24.0'
-    liquibaseRuntime 'com.microsoft.sqlserver:msql-jdbc:8.4.0.jre11'
+    liquibaseRuntime 'org.postgresql:postgresql:42.6.0'
 }
 apply plugin: "org.liquibase.gradle"
 
@@ -36,7 +36,7 @@ liquibase {
 
     activities {
         main {
-            url 'jdbc:sqlserver://' + dbServer + ';' + dbPort + ';databaseName=' +dbName
+            url 'jdbc:postgresql://' + dbServer + ':' + dbPort + '/' +dbName
             username dbUser
             password dbPassword
         }
