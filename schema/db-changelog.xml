@@ -34,7 +34,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="deleted_at" type="TIMESTAMP WITH TIME ZONE">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </createTable>
 
@@ -65,7 +65,7 @@
     <changeSet id="TEL-8" author="Andy Chang">
         <createTable tableName="block_types">
             <column name="id" autoIncrement="true" type="SERIAL">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="countries_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="block_types_pkey"/>
             </column>
             <column name="uuid" type="UUID" defaultValueComputed="gen_random_uuid()">
                 <constraints nullable="false" unique="true"/>
@@ -74,6 +74,38 @@
                 <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
+
+        <createTable tableName="blocked_contacts">
+            <column name="id" autoIncrement="true" type="SERIAL">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blocked_contacts_pkey"/>
+            </column>
+            <column name="uuid" type="UUID" defaultValueComputed="gen_random_uuid()">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="telephone_contact_id" type="INT">
+                <constraints nullable="false"
+                             foreignKeyName="blocked_contacts_telephone_contact_id"
+                             references="telephone_contacts(id)"/>
+            </column>
+            <column name="block_type_id" type="INT">
+                <constraints nullable="false"
+                             foreignKeyName="blocked_contacts_block_type_id"
+                             references="block_types(id)"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
     </changeSet>
 
 </databaseChangeLog>
