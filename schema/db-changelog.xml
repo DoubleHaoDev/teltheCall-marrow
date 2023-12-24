@@ -62,4 +62,18 @@
 
     </changeSet>
 
+    <changeSet id="TEL-8" author="Andy Chang">
+        <createTable tableName="block_types">
+            <column name="id" autoIncrement="true" type="SERIAL">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="countries_pkey"/>
+            </column>
+            <column name="uuid" type="UUID" defaultValueComputed="gen_random_uuid()">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="type" type="varchar(250)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
