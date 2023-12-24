@@ -6,7 +6,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
 
-    <changeSet id="TEL-6" author="liquibase">
+    <changeSet id="TEL-6" author="Andy Chang">
 
         <createTable tableName="telephone_contacts">
             <column name="id" autoIncrement="true" type="SERIAL">
@@ -23,6 +23,18 @@
             </column>
             <column name="country_id" type="INT">
                 <constraints nullable="true"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
             </column>
         </createTable>
 
